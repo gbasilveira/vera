@@ -114,9 +114,9 @@ vera/
 
 ## Comparison (2026 Landscape)
 
-| Framework          | Visual Builder | Stateful Orchestration | Strong Security Middleware | GitOps Config | Plugin Extensibility | Best For                     |
+| Framework          | Visual Builder | Stateful Orchestration | Security Middleware | GitOps Config | Plugin Extensibility | Best For                     |
 |--------------------|----------------|------------------------|----------------------------|---------------|----------------------|------------------------------|
-| **VERA**           | **No**         | **Via plugins**        | **Excellent (mandatory chain)**| **Yes**       | **Manifest-driven**      | **Secure production kernels**    |
+| **VERA**           | **No**         | **Via plugins**        | **Mandatory chain**| **Yes**       | **Manifest-driven**      | **Secure production kernels**    |
 | Dify               | Yes            | Good                   | Basic                      | Partial       | Marketplace          | Rapid prototyping & teams    |
 | LangGraph          | No             | Excellent              | You build it               | No            | Good                 | Complex agent workflows      |
 | Agentgateway       | No             | No                     | Excellent (gateway)        | Partial       | Protocol-focused     | MCP/A2A connectivity         |
