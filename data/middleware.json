@@ -1,0 +1,38 @@
+[
+  {
+    "name": "auth_guard",
+    "class": "core.middleware.auth.AuthGuardMiddleware",
+    "order": 10,
+    "enabled": true
+  },
+  {
+    "name": "secrets_injector",
+    "class": "core.middleware.secret_injector.SecretsInjectorMiddleware",
+    "order": 20,
+    "enabled": true
+  },
+  {
+    "name": "pii_masker",
+    "class": "core.middleware.pii_masker.PIIMaskerMiddleware",
+    "order": 30,
+    "enabled": true
+  },
+  {
+    "name": "retry",
+    "class": "core.middleware.retry.RetryMiddleware",
+    "order": 40,
+    "enabled": true
+  },
+  {
+    "name": "cost_recorder",
+    "class": "core.middleware.cost_recorder.CostRecorderMiddleware",
+    "order": 70,
+    "enabled": true
+  },
+  {
+    "name": "audit_logger",
+    "class": "core.middleware.auditor.AuditLoggerMiddleware",
+    "order": 80,
+    "enabled": true
+  }
+]

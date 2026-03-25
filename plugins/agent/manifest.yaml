@@ -1,0 +1,99 @@
+# VERA Plugin Manifest — copy this file when creating a new plugin.
+# All fields marked REQUIRED must be present or vera plugin verify will fail.
+
+name: agent             # REQUIRED. snake_case, unique across all plugins.
+version: 1.0.0              # REQUIRED. semver.
+description: "Short description shown in the dashboard plugin marketplace."
+author: "Your Name <email@example.com>"
+
+# REQUIRED. true = plugin communicates with external APIs/services.
+# When true, PIIMaskerMiddleware runs on ALL tool calls from this plugin.
+external: false
+
+# REQUIRED. true = plugin cannot be deactivated from the dashboard.
+# Only set true for system-critical plugins (e.g. llm_driver).
+core: false
+
+# Minimum roles that can call any tool in this plugin.
+# Individual tools can enforce stricter roles via Casbin policies.
+roles_required:
+  - intern
+
+# REQUIRED. All tool names this plugin registers with the kernel.
+# Format: plugin_name.action_name
+tools:
+  - agent.do_thing
+
+# Bus signals this plugin subscribes to (via register_listeners).
+listeners: []
+
+storage:
+  namespace: agent      # VFS key prefix for this plugin's data
+  backend: local            # local | redis | inherit
+  ttl_seconds: null         # null = no expiry
+
+retry:
+  max_attempts: 3
+  backoff_factor: 2
+  retryable_errors:
+    - NetworkError
+
+# Other VERA plugins required. Kernel checks these before activation.
+dependencies: []
+
+# ── Extension system ────────────────────────────────────────────────────────
+
+# Extension points THIS plugin exposes for others to contribute into.
+# Remove this section if your plugin does not host any extension points.
+#
+# id          — globally unique identifier (convention: plugins.<name>.<slot>)
+# type        — semantic tag understood by contributors
+# description — shown in `vera ext points`
+# schema      — documents the params contributors must supply (not enforced,
+#               but used for validation and documentation)
+#
+# extension_points:
+#   - id: plugins.agent.widgets
+#     type: widget
+#     description: "Contribute a widget panel to agent's dashboard view."
+#     schema:
+#       title:     {type: string,      required: true}
+#       component: {type: import_path, required: true,
+#                   description: "module.path:ComponentClass"}
+#       size:      {type: string,      required: false, default: "1x1",
+#                   values: [1x1, 2x1, 2x2]}
+
+# What THIS plugin contributes to OTHER extension points.
+# Remove this section if your plugin does not contribute anywhere.
+#
+# point  — target extension point ID (see `vera ext points`)
+# type   — must be compatible with what the point owner expects
+# params — point-specific key/value pairs (see `vera ext show <point>`)
+#
+# contributes:
+#   # Add a command group to the VERA CLI
+#   - point: interfaces.cli.commands
+#     type: command_group
+#     params:
+#       name: agent
+#       help: "My Plugin CLI commands"
+#       handler: "plugins.agent.cli:app"   # module:typer_app
+#
+#   # Add a page to the future Web UI
+#   - point: interfaces.webui.pages
+#     type: page
+#     params:
+#       path: /my-plugin
+#       title: "My Plugin"
+#       component: "plugins.agent.webui:Page"
+#       nav_icon: puzzle
+#       nav_order: 50
+#
+#   # Contribute a widget to another plugin's dashboard slot
+#   - point: plugins.dashboard.widgets
+#     type: widget
+#     params:
+#       id: agent.stats
+#       title: "My Plugin Stats"
+#       component: "plugins.agent.widgets:StatsWidget"
+#       size: "2x1"

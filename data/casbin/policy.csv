@@ -1,0 +1,29 @@
+p, perm:sys:all, *, *, allow
+p, perm:user:add, sys.users, add, allow
+p, perm:user:remove, sys.users, remove, allow
+p, perm:user:list, sys.users, read, allow
+p, perm:policy:manage, policy.*, manage, allow
+p, perm:secrets:manage, secrets.*, manage, allow
+p, perm:llm:generate, llm.*, execute, allow
+p, perm:memory:read, memory.*, execute, allow
+p, perm:memory:autostore, memory.auto_store, enable, allow
+p, perm:gmail:all, gmail.*, execute, allow
+p, perm:agent:run, agent.*, execute, allow
+p, perm:agent:edit, agent.*, write, allow
+p, manager, restricted_tool.run, execute, deny
+g, owner, perm:sys:all
+g, owner, perm:user:add
+g, owner, perm:user:remove
+g, owner, perm:user:list
+g, owner, perm:policy:manage
+g, owner, perm:secrets:manage
+g, manager, perm:llm:generate
+g, manager, perm:memory:read
+g, manager, perm:memory:autostore
+g, manager, perm:gmail:all
+g, manager, perm:agent:run
+g, agent_editor, perm:agent:run
+g, agent_editor, perm:agent:edit
+g, agent_editor, perm:llm:generate
+g, agent_editor, perm:memory:read
+g, intern, perm:memory:read
