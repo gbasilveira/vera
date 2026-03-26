@@ -1,4 +1,3 @@
-```markdown
 # VERA — Visible Edge Reasoning Architecture
 
 **The secure, observable kernel for production-grade AI agents.**
